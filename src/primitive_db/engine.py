@@ -1,5 +1,6 @@
 import prompt
 import shlex
+from .core import create_table, drop_table
 
 
 def print_help() -> None:
@@ -34,6 +35,8 @@ def run() -> None:
     print(f"<{blue}command{reset}> {blue}exit{reset} - выход из программы")
     print(f"<{blue}command{reset}> {blue}help{reset} - справочная информация ")
     while True:
+
+
         user_input = prompt.string(f'>>>Введите команду: ')
 
         args = shlex.split(user_input)
@@ -43,11 +46,17 @@ def run() -> None:
             case "help":
                 print_help()
             case "create_table":
-                pass
+                result = create_table(meta, args[1], [col for col in args[2:]])
+                if not result is None:
+                    pass
+                    #save_metadata(filepath, result)
             case "list_tables":
                 pass
             case "drop_table":
-                pass
+                result = drop_table(meta, args[1])
+                if not result is None:
+                    pass
+                    # save_metadata(filepath, result)
             case _:
                 print(f"{reset}Функции <{user_input}> нет. Попробуйте снова.")
 
