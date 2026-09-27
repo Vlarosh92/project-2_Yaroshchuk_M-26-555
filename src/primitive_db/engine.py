@@ -1,24 +1,53 @@
 import prompt
+import shlex
 
 
-def welcome() -> None:
+def print_help() -> None:
+    """Выдает информацию в консоль на вызов команды help"""
+    # Константы для цветов
+    blue = "\033[94m"
+    reset = "\033[0m"
+
+    print(f"\n{reset}***Процесс работы с таблицей***")
+    print("Функции:")
+    print(f"<{blue}command{reset}> create_table <имя_таблицы> <столбец1:тип> .. - создать таблицу")
+    print(f"<{blue}command{reset}> list_tables - показать список всех таблиц")
+    print(f"<{blue}command{reset}> drop_table <имя_таблицы> - удалить таблицу")
+
+    print("\nОбщие команды:")
+    print(f"<{blue}command{reset}> {blue}exit{reset} - выход из программы")
+    print(f"<{blue}command{reset}> {blue}help{reset} - справочная информация\n")
+
+def run() -> None:
     """
     Функция ввода данных от пользователя
     """
-    # Константы для цветов (чтобы код был читаемым)
-    BLUE = "\033[94m"
-    RESET = "\033[0m"
+    # Константы для цветов
+    blue = "\033[94m"
+    reset = "\033[0m"
 
-    print("\n\nПервая попытка запустить проект!\n")
-    print("***")
-    print(f"{BLUE}<command> exit{RESET} - выйти из программы")
-    print(f"{BLUE}<command> help{RESET} - справочная информация")
+    print("\n***Процесс работы с таблицей***\n")
+    print("Функции:\n")
+    print(f"<{blue}command{reset}> create_table <имя_таблицы> <столбец1:тип> <столбец2:тип> .. - создать таблицу")
+    print(f"<{blue}command{reset}> list_tables - показать список всех таблиц")
+    print(f"<{blue}command{reset}> drop_table <имя_таблицы> - удалить таблицу")
+    print(f"<{blue}command{reset}> {blue}exit{reset} - выход из программы")
+    print(f"<{blue}command{reset}> {blue}help{reset} - справочная информация ")
     while True:
-        user_input = prompt.string(f'Введите команду: {BLUE}')
-        if user_input == "exit":
-            break
-        elif user_input == "help":
-            print(f"{BLUE}<command> exit{RESET} - выйти из программы")
-            print(f"{BLUE}<command> help{RESET} - справочная информация\n")
-        else:
-            continue
+        user_input = prompt.string(f'>>>Введите команду: ')
+
+        args = shlex.split(user_input)
+        match args[0]:
+            case "exit":
+                break
+            case "help":
+                print_help()
+            case "create_table":
+                pass
+            case "list_tables":
+                pass
+            case "drop_table":
+                pass
+            case _:
+                print(f"{reset}Функции <{user_input}> нет. Попробуйте снова.")
+
