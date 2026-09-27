@@ -1,5 +1,7 @@
 import prompt
 import shlex
+from .core import create_table, drop_table
+from .utils import load_metadata, save_metadata
 
 
 def print_help() -> None:
@@ -34,7 +36,9 @@ def run() -> None:
     print(f"<{blue}command{reset}> {blue}exit{reset} - выход из программы")
     print(f"<{blue}command{reset}> {blue}help{reset} - справочная информация ")
     while True:
-        meta_data = load_metadata("db_meta.json")
+
+        META_DATA_FILE_PATH = "db_meta.json"
+        meta_data = load_metadata(META_DATA_FILE_PATH)
         user_input = prompt.string(f'>>>Введите команду: ')
 
         args = shlex.split(user_input)
@@ -44,11 +48,15 @@ def run() -> None:
             case "help":
                 print_help()
             case "create_table":
-                pass
+                result = create_table(meta_data, args[1], [col for col in args[2:]])
+                if not result is None:
+                    save_metadata(META_DATA_FILE_PATH, result)
             case "list_tables":
                 pass
             case "drop_table":
-                pass
+                result = drop_table(meta_data, args[1])
+                if not result is None:
+                    save_metadata(META_DATA_FILE_PATH, result)
             case _:
                 print(f"{reset}Функции <{user_input}> нет. Попробуйте снова.")
 
