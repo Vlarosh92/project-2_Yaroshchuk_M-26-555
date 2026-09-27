@@ -1,0 +1,27 @@
+# Виртуальные окружения
+.venv/
+__pypackages__/
+
+# Poetry (кэш и скрытые окружения)
+.cache/
+.local/share/pypoetry/
+
+# Python артефакты
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Распределённые сборки
+dist/
+build/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Локальные конфиги и секреты
+.env
