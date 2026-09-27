@@ -34,6 +34,7 @@ def run() -> None:
     print(f"<{blue}command{reset}> {blue}exit{reset} - выход из программы")
     print(f"<{blue}command{reset}> {blue}help{reset} - справочная информация ")
     while True:
+        meta_data = load_metadata("db_meta.json")
         user_input = prompt.string(f'>>>Введите команду: ')
 
         args = shlex.split(user_input)
