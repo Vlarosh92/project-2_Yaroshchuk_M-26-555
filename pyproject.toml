@@ -6,7 +6,7 @@ authors = [
     { name = "Yva09" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = ["prompt (>=0.4.1,<0.5.0)", "ruff (>=0.16.9,<0.17.0)"]
 
 [tool.poetry]
 packages = [
@@ -16,6 +16,19 @@ packages = [
 [tool.poetry.scripts]
 project = "src.primitive_db.main:main"
 
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+exclude = ["venv", ".venv", "dist", "__pycache__"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "ruff (>=0.16.9,<0.17.0)"
+]
