@@ -5,6 +5,15 @@
       "name": "str",
       "age": "int",
       "active": "bool"
+    },
+    "tab_2": {
+      "ID": "int",
+      "name": "str",
+      "surname": "str"
+    },
+    "t_1": {
+      "ID": "int",
+      "name": "str"
     }
   }
 }

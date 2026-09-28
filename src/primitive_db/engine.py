@@ -1,6 +1,6 @@
 import prompt
 import shlex
-from .core import create_table, drop_table
+from .core import create_table, drop_table, list_tables
 from .utils import load_metadata, save_metadata
 
 
@@ -52,7 +52,9 @@ def run() -> None:
                 if not result is None:
                     save_metadata(META_DATA_FILE_PATH, result)
             case "list_tables":
-                pass
+                list_tables_name=list_tables(meta_data)
+                for table in list_tables_name:
+                    print(table)
             case "drop_table":
                 result = drop_table(meta_data, args[1])
                 if not result is None:
