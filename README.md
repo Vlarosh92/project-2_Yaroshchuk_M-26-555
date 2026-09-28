@@ -22,3 +22,8 @@ create_table table_name name:str salary:int active:bool
  - Таблицы не существует 
 Пример использования:
 drop_table table_name 
+
+<list_tables> - показывает список таблиц
+Схема: list_tables 
+Пример использования:
+list_tables 
