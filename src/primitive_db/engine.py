@@ -59,4 +59,3 @@ def run() -> None:
                     save_metadata(META_DATA_FILE_PATH, result)
             case _:
                 print(f"{reset}Функции <{user_input}> нет. Попробуйте снова.")
-

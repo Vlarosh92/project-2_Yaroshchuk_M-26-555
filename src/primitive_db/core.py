@@ -50,3 +50,10 @@ def drop_table(metadata: dict, table_name: str) -> dict:
             return None
     except TypeError:
         pass
+def list_tables(metadata: dict) -> str:
+    """
+    Функция возвращающая список всех таблиц
+    """
+    #Проверка на наличие
+    metadata.setdefault("tables", {})
+    return [" - " +table+"\n" for table in metadata["tables"].keys()]
